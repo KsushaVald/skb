@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skb.</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="choices/choices.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script defer src="/choices/choices.min.js"></script>
+    <script type="module">
+      import {createTable, sortDevelopment, addDevelopment, searchDevelopment} from '/js/viewHtml.js';
+      createTable();
+      sortDevelopment();
+      addDevelopment();
+      searchDevelopment();
+    </script>
+</head>
+<body>
+    <div class="forms-blocks close">
+       <div class="form-block close">
+        <button class="form-block__btn-close">
+          <svg width="29" height="29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2333 7.73333L21.2666 6.76666L14.4999 13.5334L7.73324 6.7667L6.76658 7.73336L13.5332 14.5L6.7666 21.2667L7.73327 22.2333L14.4999 15.4667L21.2666 22.2334L22.2332 21.2667L15.4666 14.5L22.2333 7.73333Z" fill="#B0B0B0"/>
+          </svg>
+        </button>
+        <div class="form-block__group">
+          <h3 class="form-block__header"></h3>
+          <span class="form-block__span"></span>
+          <form class="form-block__form close">
+          </form>
+        </div>
+        <div class="form-block__contacts form-block__group close">
+          <form class="form-block__form-contacts">
+            <ul class="form-block__contacts-list"></ul>
+          </form>
+            <button class="form-block__contact-btn-add">
+              Добавить контакт
+            </button>
+        </div>
+        <div class="form-block__buttons">
+          <p class="form-block__alarm-text"></p>
+          <button class="form-block__btn-action btn"></button>
+          <button class="form-block__btn-cancel"></button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="header__link-logo">
+              <picture>
+                <source media="(max-width: 320px)" srcset="/img/logo_320.png">
+                <img src="/img/logo.png" alt="Логотип" class="header-img-logo">
+              </picture>
+            </a>
+            <input type="text" class="header__input" placeholder="Введите запрос">
+        </div>
+    </header>
+    <main>
+        <section class="section-client">
+            <div class="container  section-client__container">
+                <h1 class="section-client__header">Клиенты</h1>
+                <div class="section-client__table-container">
+                  <table class="section-client__table">
+                    <thead class="section-client__thead">
+                        <tr class="section-client__thead-row" >
+                            <th class="section-client__thead-cell cell-sort sort sort-svg" data-column="id">
+                                ID
+                                <span class="section-client__span-sort">
+                                    <svg class="section-client__span-svg" width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class="section-client__thead-cell cell-sort" data-column="Name">
+                                Фамилия Имя Отчество
+                                <span class="section-client__span-sort">
+                                  <svg class="section-client__span-svg" width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF"/>
+                                  </svg>
+                                  А&ndash;Я
+                                </span>
+                            </th>
+                            <th class="section-client__thead-cell cell-sort" data-column="createDate">
+                                Дата и время создания
+                                <span class="section-client__span-sort">
+                                  <svg class="section-client__span-svg" width="12" height="12"  fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF"/>
+                                  </svg>
+                                </span>
+                            </th>
+                            <th class="section-client__thead-cell cell-sort" data-column="changeDate">
+                                Последние изменения
+                                <span class="section-client__span-sort">
+                                  <svg class="section-client__span-svg" width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF"/>
+                                  </svg>
+                                </span>
+                            </th>
+                            <th class="section-client__thead-cell">
+                                Контакты
+                            </th>
+                            <th class="section-client__thead-cell">
+                                Действия
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="section-client__tbody"></tbody>
+                  </table>
+                </div>
+                <div class="section-client__preloader">
+                  <img src="/img/loading.png" class="section-client__preloader-img">
+                </div>
+                <div class="section-client__if-nodata">
+                  <h3 class="section-client__nodata-header">
+                    Не найдено...
+                  </h3>
+                </div>
+                <button class="section-client__btn btn close">
+                  <svg width="23" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.5 8C16.71 8 18.5 6.21 18.5 4C18.5 1.79 16.71 0 14.5 0C12.29 0 10.5 1.79 10.5 4C10.5 6.21 12.29 8 14.5 8ZM5.5 6V3H3.5V6H0.5V8H3.5V11H5.5V8H8.5V6H5.5ZM14.5 10C11.83 10 6.5 11.34 6.5 14V16H22.5V14C22.5 11.34 17.17 10 14.5 10Z" fill="#9873FF"/>
+                  </svg>
+                  Добавить клиента
+                </button>
+          </div>
+        </section>
+    </main>
+</body>
+<script src="choices/choices.min.js"></script>
+<script defer src="/simplebar/dist/simplebar.min.js"></script>
+<script>
+  function choicesDevelopment(){
+    function addChoices(){
+        const elements = document.querySelectorAll('.form-block__contacts-select');
+        elements.forEach(function(element){
+            const choices = new Choices(element, {
+            placeholder: true,
+            searchEnabled: false,
+            itemSelectText: '',
+            shouldSort: false,
+          });
+        });
+      }
+      function findeBtnChenge(){
+        let chengeBtns = document.querySelectorAll('.section-client__btn-change');
+        chengeBtns.forEach(function(btn){
+            btn.addEventListener('click', function(){
+            addChoices();
+          });
+        });
+      }
+
+      function addScroll(){
+        let table = document.querySelector('.section-client__table-container');
+        let style = window.getComputedStyle(table);
+        console.log(style.height);
+        if (window.innerWidth<810){
+            table.style.overflow = "hidden";
+            new SimpleBar(table, {
+              forceVisible: true,
+            });
+        }
+        if(table)
+        window.addEventListener('resize', function(){
+          console.log(window.innerWidth);
+          if (window.innerWidth<810){
+            table.style.overflow = "hidden";
+            new SimpleBar(table, {
+              forceVisible: true,
+            });
+          }
+        });
+      }
+
+      document.querySelector('.form-block__contact-btn-add').addEventListener('click', function(){
+        setTimeout(addChoices, 1);
+      });
+
+      findeBtnChenge();
+      addScroll();
+      let actionBtn = document.querySelector('.form-block__btn-action');
+      actionBtn.addEventListener('click', function(){
+        setTimeout(findeBtnChenge, 300);
+        setTimeout(addScroll, 300);
+      });
+  }
+  setTimeout(choicesDevelopment, 300);
+</script>
+</html>
